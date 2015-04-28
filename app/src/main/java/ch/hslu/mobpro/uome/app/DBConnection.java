@@ -5,6 +5,12 @@ package ch.hslu.mobpro.uome.app;
  */
 import android.database.sqlite.*;
 
-public class DBConnection {
+public class DBConnection{
 
+    private SQLiteDatabase database;
+
+
+    public DBConnection(){
+
+    }
 }
