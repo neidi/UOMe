@@ -23,7 +23,7 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Benutzername:"
+                android:text="@string/txtUsernameText"
                 android:id="@+id/txtUsername" android:layout_weight="1"/>
         <EditText
                 android:layout_width="wrap_content"
@@ -38,7 +38,7 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Passwort:"
+                android:text="@string/txtPasswordText"
                 android:id="@+id/txtPassword" android:layout_weight="1"/>
         <EditText
                 android:layout_width="wrap_content"
@@ -47,8 +47,14 @@
                 android:ems="10"
                 android:id="@+id/editText2" android:layout_weight="1"/>
     </LinearLayout>
+    <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btnLoginText"
+            android:id="@+id/btnLogin" android:layout_gravity="center_horizontal" android:onClick="onBtnLoginClicked"/>
     <ImageView
             android:layout_width="95dp"
             android:layout_height="80dp"
-            android:id="@+id/imageView2" android:src="@mipmap/person_add" android:layout_gravity="bottom|left"/>
+            android:id="@+id/imageView2" android:src="@mipmap/person_add" android:layout_gravity="bottom|left"
+            android:clickable="false"/>
 </LinearLayout>
