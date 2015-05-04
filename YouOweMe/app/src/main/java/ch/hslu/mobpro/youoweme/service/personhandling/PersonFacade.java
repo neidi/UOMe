@@ -1,6 +1,6 @@
 package ch.hslu.mobpro.youoweme.service.personhandling;
 
-import ch.hslu.mobpro.youoweme.service.dto.DtoPerson;
+import ch.hslu.mobpro.youoweme.database.Person;
 
 import java.util.List;
 
@@ -8,10 +8,10 @@ import java.util.List;
  * Created by simonneidhart on 04.05.15.
  */
 public interface PersonFacade {
-    void createPerson(DtoPerson person);
-    void updatePerson(DtoPerson person);
+    void createPerson(Person person);
+    void updatePerson(Person person);
     boolean deletePerson(int id);
-    List<DtoPerson> readPeople();
-    DtoPerson getPerson(int id);
-    boolean authenticate(DtoPerson person);
+    List<Person> readPeople();
+    Person getPerson(int id);
+    int authenticate(Person person);
 }

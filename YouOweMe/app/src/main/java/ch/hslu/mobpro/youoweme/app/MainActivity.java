@@ -1,14 +1,13 @@
 package ch.hslu.mobpro.youoweme.app;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import ch.hslu.mobpro.youoweme.database.Person;
-import ch.hslu.mobpro.youoweme.service.dto.DtoPerson;
 import ch.hslu.mobpro.youoweme.service.personhandling.PersonFacade;
 import ch.hslu.mobpro.youoweme.service.personhandling.PersonFacadeImpl;
 
@@ -54,10 +53,10 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void onBtnLoginClicked(View view) {
-        DtoPerson person = new DtoPerson();
-        person.emailAddress = String.valueOf(edittxtUsername.getText());
-        person.password = String.valueOf(edittxtPassword.getText());
-        if(personFacade.authenticate(person)){
+        Person person = new Person();
+        person.seteMailAddress(String.valueOf(edittxtUsername.getText()));
+        person.setPassword(String.valueOf(edittxtPassword.getText()));
+        if(personFacade.authenticate(person)>0){
             Intent intent = new Intent(getApplicationContext(), CreditorActivity.class);
             startActivity(intent);
         }

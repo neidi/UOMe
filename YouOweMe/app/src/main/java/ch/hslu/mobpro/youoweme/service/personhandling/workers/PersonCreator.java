@@ -1,11 +1,13 @@
 package ch.hslu.mobpro.youoweme.service.personhandling.workers;
 
 import ch.hslu.mobpro.youoweme.database.EntityListGetter;
+import ch.hslu.mobpro.youoweme.database.EntityListGetterImpl;
 import ch.hslu.mobpro.youoweme.database.EntityPersistor;
-import ch.hslu.mobpro.youoweme.service.dto.DtoPerson;
+import ch.hslu.mobpro.youoweme.database.Person;
 
 /**
  * Created by simonneidhart on 04.05.15.
+ * Klasse zur Personenerstellung
  */
 public class PersonCreator {
     private static PersonCreator instance;
@@ -23,7 +25,7 @@ public class PersonCreator {
      */
     public static PersonCreator getInstance(){
         if(instance==null){
-            instance = new PersonCreator(new EntityListGetterImpl(), new EntityPersistorImpl());
+            //instance = new PersonCreator(new EntityListGetterImpl(), new EntityPersistorImpl());
         }
         return instance;
     }
@@ -33,7 +35,7 @@ public class PersonCreator {
      * @param person das Data Transfer Object mit den Personeninformationen
      * @return die ID des neu erstellten Datenbankeintrages
      */
-    public int createPerson(DtoPerson person) {
+    public int createPerson(Person person) {
         return 0;
     }
 }
