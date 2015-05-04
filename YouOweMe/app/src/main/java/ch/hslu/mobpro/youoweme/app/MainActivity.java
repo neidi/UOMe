@@ -5,14 +5,24 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+
+import ch.hslu.mobpro.youoweme.database.LoginTask;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    EditText edittxtUsername;
+    EditText edittxtPassword;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        edittxtPassword = (EditText) findViewById(R.id.edittxtPassword);
+        edittxtUsername = (EditText) findViewById(R.id.edittxtUsername);
     }
 
 
@@ -39,6 +49,13 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void onBtnLoginClicked(View view){
+
+        LoginTask loginTask = new LoginTask();
+        loginTask.execute(edittxtUsername.toString(),edittxtPassword.toString());
+    }
+
+
+    public void onCreateUserClick(View view) {
 
     }
 }
