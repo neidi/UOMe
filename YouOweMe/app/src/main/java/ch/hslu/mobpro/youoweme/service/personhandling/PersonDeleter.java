@@ -1,4 +1,4 @@
-package ch.hslu.mobpro.youoweme.service.personhandling.workers;
+package ch.hslu.mobpro.youoweme.service.personhandling;
 
 /**
  * Created by simonneidhart on 04.05.15.
@@ -8,6 +8,7 @@ public class PersonDeleter {
 
     /**
      * Löscht eine Person anhand der ID aus der Datenbank
+     *
      * @param id die ID der Person
      * @return true, wenn die Löschung geklappt hat, ansonsten false
      */

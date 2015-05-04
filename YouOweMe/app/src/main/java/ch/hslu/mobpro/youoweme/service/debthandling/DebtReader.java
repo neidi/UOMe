@@ -1,9 +1,8 @@
-package ch.hslu.mobpro.youoweme.service.debthandling.workers;
+package ch.hslu.mobpro.youoweme.service.debthandling;
 
 import ch.hslu.mobpro.youoweme.database.Debt;
 import ch.hslu.mobpro.youoweme.database.EntityListGetter;
 import ch.hslu.mobpro.youoweme.database.EntityListGetterImpl;
-import ch.hslu.mobpro.youoweme.database.EntityPerIdGetter;
 
 import java.util.List;
 
@@ -15,13 +14,13 @@ public class DebtReader {
     private final EntityListGetter entityListGetter;
     private static DebtReader instance;
 
-    DebtReader(EntityListGetter entityListGetter){
+    DebtReader(EntityListGetter entityListGetter) {
         this.entityListGetter = entityListGetter;
     }
 
-    public static DebtReader getInstance(){
-        if(instance==null){
-            instance= new DebtReader(new EntityListGetterImpl());
+    public static DebtReader getInstance() {
+        if (instance == null) {
+            instance = new DebtReader(new EntityListGetterImpl());
         }
         return instance;
     }

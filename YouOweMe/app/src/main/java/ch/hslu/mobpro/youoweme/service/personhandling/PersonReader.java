@@ -1,8 +1,7 @@
-package ch.hslu.mobpro.youoweme.service.personhandling.workers;
+package ch.hslu.mobpro.youoweme.service.personhandling;
 
 import ch.hslu.mobpro.youoweme.database.EntityListGetter;
 import ch.hslu.mobpro.youoweme.database.EntityListGetterImpl;
-import ch.hslu.mobpro.youoweme.database.EntityPerIdGetter;
 import ch.hslu.mobpro.youoweme.database.Person;
 
 import java.util.List;
@@ -15,16 +14,17 @@ public class PersonReader {
     private static PersonReader instance;
     private final EntityListGetter entityListGetter;
 
-    PersonReader(EntityListGetter entityListGetter){
+    PersonReader(EntityListGetter entityListGetter) {
         this.entityListGetter = entityListGetter;
     }
 
     /**
      * Singletonmethode
+     *
      * @return die Instanz
      */
     public static PersonReader getInstance() {
-        if(instance == null){
+        if (instance == null) {
             instance = new PersonReader(new EntityListGetterImpl());
         }
         return instance;
@@ -32,6 +32,7 @@ public class PersonReader {
 
     /**
      * Liest alle Personen aus der Datenbank aus.
+     *
      * @return eine Liste aller Personen
      */
     public List<Person> readPeople() {
@@ -40,6 +41,7 @@ public class PersonReader {
 
     /**
      * Liest eine einzelne Person anhand ihrer ID aus der Datenbank.
+     *
      * @param id die ID der Person
      * @return Ein Personenobjekt
      */

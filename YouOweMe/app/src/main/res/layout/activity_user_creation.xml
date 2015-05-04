@@ -19,7 +19,7 @@
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
               android:textAppearance="?android:attr/textAppearanceMedium" android:text="Passwort:"
               android:id="@+id/txtViewPassword"
-              android:layout_below="@+id/editTextEmail" android:layout_alignParentLeft="true"
+              android:layout_below="@+id/emailEditText" android:layout_alignParentLeft="true"
               android:layout_alignParentStart="true"/>
     <TextView
             android:layout_width="wrap_content"
@@ -27,7 +27,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Vorname:"
             android:id="@+id/txtViewFirstName"
-            android:layout_below="@+id/editTextPassword" android:layout_alignParentLeft="true"
+            android:layout_below="@+id/passwordEditText" android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"/>
     <TextView
             android:layout_width="wrap_content"
@@ -36,42 +36,41 @@
             android:text="Nachname:"
             android:id="@+id/txtViewLastName"
             android:layout_marginTop="36dp" android:layout_below="@+id/txtViewFirstName"
-            android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
-            android:layout_alignTop="edit"/>
+            android:layout_alignParentLeft="true" android:layout_alignParentStart="true"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:text="E-Mail"
             android:ems="10"
-            android:id="@+id/editTextEmail" android:layout_alignTop="@+id/txtViewEmail"
+            android:id="@+id/emailEditText" android:layout_alignTop="@+id/txtViewEmail"
             android:layout_alignParentRight="true" android:layout_alignParentEnd="true"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/editTextPassword" android:layout_below="@+id/editTextEmail" android:layout_alignLeft="@+id/editTextEmail"
-            android:layout_alignStart="@+id/editTextEmail"/>
+            android:id="@+id/passwordEditText" android:layout_below="@+id/emailEditText" android:layout_alignLeft="@+id/emailEditText"
+            android:layout_alignStart="@+id/emailEditText"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:text="Vorname"
             android:ems="10"
-            android:id="@+id/editTextFirstName"
+            android:id="@+id/firstNameEditText"
             android:layout_alignBaseline="@+id/txtViewFirstName"
-            android:layout_alignLeft="@+id/editTextPassword" android:layout_alignStart="@+id/editTextPassword"/>
+            android:layout_alignLeft="@+id/passwordEditText" android:layout_alignStart="@+id/passwordEditText"/>
     <EditText android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:inputType="textPersonName" android:text="Nachname" android:ems="10" android:id="@+id/editTextLastName"
-              android:layout_alignBottom="@+id/txtViewLastName" android:layout_alignLeft="@+id/editTextFirstName"
-              android:layout_alignStart="@+id/editTextFirstName"/>
+              android:inputType="textPersonName" android:text="Nachname" android:ems="10" android:id="@+id/lastNameEditText"
+              android:layout_alignBottom="@+id/txtViewLastName" android:layout_alignLeft="@+id/firstNameEditText"
+              android:layout_alignStart="@+id/firstNameEditText"/>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/btnCreateAccountText"
-            android:id="@+id/btnCreateAccount" android:layout_below="@+id/editTextLastName"
-            android:layout_alignRight="@+id/editTextLastName"
-            android:layout_alignEnd="@+id/editTextLastName" android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"/>
+            android:id="@+id/createAccountButton" android:layout_below="@+id/lastNameEditText"
+            android:layout_alignRight="@+id/lastNameEditText"
+            android:layout_alignEnd="@+id/lastNameEditText" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" android:onClick="onCreateAccountButtonClicked"/>
 </RelativeLayout>

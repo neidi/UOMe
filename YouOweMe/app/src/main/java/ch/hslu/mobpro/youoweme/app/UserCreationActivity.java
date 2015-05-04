@@ -4,13 +4,26 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import ch.hslu.mobpro.youoweme.database.Person;
 
 
 public class UserCreationActivity extends ActionBarActivity {
 
+    private EditText emailEditText;
+    private EditText passwordEditText;
+    private EditText firstNameEditText;
+    private EditText lastNameEditText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.emailEditText = (EditText) findViewById(R.id.emailEditText);
+        this.passwordEditText = (EditText) findViewById(R.id.passwordEditText);
+        this.firstNameEditText = (EditText) findViewById(R.id.firstNameEditText);
+        this.lastNameEditText = (EditText) findViewById(R.id.lastNameEditText);
+
         setContentView(R.layout.activity_user_creation);
     }
 
@@ -35,5 +48,13 @@ public class UserCreationActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onCreateAccountButtonClicked(View view){
+        Person person = new Person();
+        person.seteMailAddress(String.valueOf(this.emailEditText.getText()));
+        person.setPassword(String.valueOf(this.passwordEditText));
+        person.setFirstName(String.valueOf(this.firstNameEditText));
+        person.setLastName(String.valueOf(this.lastNameEditText));
     }
 }

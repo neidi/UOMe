@@ -1,8 +1,7 @@
-package ch.hslu.mobpro.youoweme.service.personhandling.workers;
+package ch.hslu.mobpro.youoweme.service.personhandling;
 
 import ch.hslu.mobpro.youoweme.database.EntityListGetter;
 import ch.hslu.mobpro.youoweme.database.EntityListGetterImpl;
-import ch.hslu.mobpro.youoweme.database.EntityPersistor;
 import ch.hslu.mobpro.youoweme.database.Person;
 
 /**

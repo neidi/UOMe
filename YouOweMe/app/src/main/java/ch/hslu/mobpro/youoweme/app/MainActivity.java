@@ -8,13 +8,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import ch.hslu.mobpro.youoweme.database.Person;
-import ch.hslu.mobpro.youoweme.service.personhandling.PersonFacade;
-import ch.hslu.mobpro.youoweme.service.personhandling.PersonFacadeImpl;
+import ch.hslu.mobpro.youoweme.service.personhandling.PersonAuthenticator;
 
 
 public class MainActivity extends ActionBarActivity {
 
-    PersonFacade personFacade;
+    PersonAuthenticator personAuthenticator;
     EditText edittxtUsername;
     EditText edittxtPassword;
 
@@ -23,8 +22,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        personFacade = new PersonFacadeImpl();
+        personAuthenticator = PersonAuthenticator.getInstance();
         edittxtPassword = (EditText) findViewById(R.id.edittxtPassword);
         edittxtUsername = (EditText) findViewById(R.id.edittxtUsername);
     }
@@ -56,7 +54,7 @@ public class MainActivity extends ActionBarActivity {
         Person person = new Person();
         person.seteMailAddress(String.valueOf(edittxtUsername.getText()));
         person.setPassword(String.valueOf(edittxtPassword.getText()));
-        if(personFacade.authenticate(person)>0){
+        if (personAuthenticator.authenticate(person) > 0) {
             Intent intent = new Intent(getApplicationContext(), CreditorActivity.class);
             startActivity(intent);
         }
