@@ -24,7 +24,7 @@ public class getDebtTask extends AsyncTask<String, Void, ArrayList<Debt>> {
         protected ArrayList<Debt> doInBackground(String... params) {
 
             try {
-                String dblink = "http://10.3.113.24mobprophp//getdebt.php";
+                String dblink = "http://10.177.1.183/mobprophp/getdebt.php";
 
                 HttpClient httpclient = new DefaultHttpClient();
                 HttpPost httppost = new HttpPost(dblink);
