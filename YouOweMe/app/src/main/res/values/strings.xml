@@ -9,4 +9,9 @@
     <string name="title_section1">Section 1</string>
     <string name="title_section2">Section 2</string>
     <string name="title_section3">Section 3</string>
+    <string name="txtUsernameText">Benutzername:</string>
+    <string name="txtPasswordText">Passwort:</string>
+    <string name="btnLoginText">Login</string>
+    <string name="title_activity_user_creation">UserCreationActivity</string>
+    <string name="btnCreateAccountText">Erstelle Account</string>
 </resources>

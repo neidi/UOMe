@@ -58,6 +58,6 @@
     <ImageView
             android:layout_width="95dp"
             android:layout_height="80dp"
-            android:id="@+id/imageView2" android:src="@mipmap/person_add" android:layout_gravity="bottom|left"
-            android:clickable="false"/>
+            android:id="@+id/ivCreateUser" android:src="@mipmap/person_add" android:layout_gravity="bottom|left"
+            android:clickable="false" android:onClick="onCreateUserClick"/>
 </LinearLayout>
