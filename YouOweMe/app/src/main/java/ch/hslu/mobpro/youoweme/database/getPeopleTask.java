@@ -1,23 +1,17 @@
 package ch.hslu.mobpro.youoweme.database;
 
 import android.os.AsyncTask;
-
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
-import java.net.URI;
-import java.net.URL;
+
 import java.util.ArrayList;
 
 /**
@@ -28,25 +22,18 @@ public class getPeopleTask extends AsyncTask<String, Void, ArrayList<Person>> {
     @Override
     protected ArrayList<Person> doInBackground(String... params) {
 
-    InputStream is = null;
-
     try {
-        String dblink = "http://10.3.113.24/getpeople.php";
+        String dblink = "http://10.3.113.24/mobprophp/getpeople.php";
 
         HttpClient httpclient = new DefaultHttpClient();
         HttpPost httppost = new HttpPost(dblink);
 
         HttpResponse response = httpclient.execute(httppost);
 
-
-
         String jsonResult = inputStreamToString(
                 response.getEntity().getContent()).toString();
 
         JSONObject jsonObject = new JSONObject(jsonResult);
-
-
-
 
         JSONArray jsonArray = jsonObject.getJSONArray("id");
 
