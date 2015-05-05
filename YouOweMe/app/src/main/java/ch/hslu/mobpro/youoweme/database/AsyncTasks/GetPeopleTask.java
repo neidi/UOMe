@@ -1,4 +1,4 @@
-package ch.hslu.mobpro.youoweme.database;
+package ch.hslu.mobpro.youoweme.database.AsyncTasks;
 
 import android.os.AsyncTask;
 import org.apache.http.HttpResponse;
@@ -14,10 +14,12 @@ import java.io.InputStreamReader;
 
 import java.util.ArrayList;
 
+import ch.hslu.mobpro.youoweme.database.Person;
+
 /**
  * Created by livio on 03.05.2015.
  */
-public class getPeopleTask extends AsyncTask<String, Void, ArrayList<Person>> {
+public class GetPeopleTask extends AsyncTask<String, Void, ArrayList<Person>> {
 
     @Override
     protected ArrayList<Person> doInBackground(String... params) {

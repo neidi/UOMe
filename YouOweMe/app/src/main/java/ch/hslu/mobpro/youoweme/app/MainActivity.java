@@ -7,6 +7,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+
+import java.util.ArrayList;
+
+import ch.hslu.mobpro.youoweme.database.Debt;
+import ch.hslu.mobpro.youoweme.database.AsyncTasks.GetDebtTask;
 import ch.hslu.mobpro.youoweme.database.Person;
 import ch.hslu.mobpro.youoweme.service.personhandling.PersonAuthenticator;
 
@@ -51,6 +56,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void onBtnLoginClicked(View view) {
+
         Person person = new Person();
         person.seteMailAddress(String.valueOf(edittxtUsername.getText()));
         person.setPassword(String.valueOf(edittxtPassword.getText()));

@@ -1,4 +1,4 @@
-package ch.hslu.mobpro.youoweme.database;
+package ch.hslu.mobpro.youoweme.database.AsyncTasks;
 
 import android.os.AsyncTask;
 
@@ -13,12 +13,18 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
+import ch.hslu.mobpro.youoweme.database.Debt;
+import ch.hslu.mobpro.youoweme.database.Person;
 
 /**
  * Created by livio on 04.05.2015.
  */
-public class getDebtTask extends AsyncTask<String, Void, ArrayList<Debt>> {
+public class GetDebtTask extends AsyncTask<String, Void, ArrayList<Debt>> {
 
         @Override
         protected ArrayList<Debt> doInBackground(String... params) {
@@ -37,23 +43,26 @@ public class getDebtTask extends AsyncTask<String, Void, ArrayList<Debt>> {
                 JSONObject jsonObject = new JSONObject(jsonResult);
 
                 JSONArray jsonArray = jsonObject.getJSONArray("id");
-/*
+
                 ArrayList<Debt> arrayList = new ArrayList();
 
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject c = jsonArray.getJSONObject(i);
-                    Person person = new Person();
-                    person.setId(c.getInt("id"));
-                    person.setFirstName(c.getString("lastName"));
-                    person.setLastName(c.getString("firstName"));
-                    person.seteMailAddress(c.getString("emailAddress"));
-                    person.setPassword(c.getString("password"));
+                    Debt debt = new Debt();
+                    debt.setId(c.getInt("id"));
+                    debt.setAmount(c.getDouble("amount"));
+                    debt.setCreationDate((convertStringToDate(c.getString("creationDate"))));
+                    debt.setDueDate(convertStringToDate((c.getString("dueDate"))));
 
-                    arrayList.add(person);
+                    //ToDo: Get Person Object and serach for getted ID
+                    debt.setCreditor((Person) c.get("creditor_id"));
+                    debt.setDebitor((Person)c.get("debitor_id"));
 
+                    debt.setReason(c.getString("reason"));
 
-                }*/
-                return null;
+                    arrayList.add(debt);
+                }
+                return arrayList;
 
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -61,6 +70,20 @@ public class getDebtTask extends AsyncTask<String, Void, ArrayList<Debt>> {
             }
             return null;
         }
+
+    public Date convertStringToDate(String dateString)
+    {
+        Date date = null;
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        try{
+            date = df.parse(dateString);
+        }
+        catch ( Exception ex ){
+            System.out.println(ex);
+        }
+        return date;
+    }
+
 
         private StringBuilder inputStreamToString(InputStream is) {
             String rLine = "";

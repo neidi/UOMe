@@ -2,6 +2,9 @@ package ch.hslu.mobpro.youoweme.database;
 
 import java.util.List;
 
+import ch.hslu.mobpro.youoweme.database.AsyncTasks.GetDebtTask;
+import ch.hslu.mobpro.youoweme.database.AsyncTasks.GetPeopleTask;
+
 /**
  * Created by livio on 04.05.2015.
  */
@@ -10,8 +13,8 @@ public class EntityListGetterImpl implements EntityListGetter {
     public List<Debt> getDebtList() {
         try {
             //ToDo: Übergebe current user in debt
-            getDebtTask getDebtTask = new getDebtTask();
-            return getDebtTask.execute().get();
+            GetDebtTask GetDebtTask = new GetDebtTask();
+            return GetDebtTask.execute().get();
         }catch(Exception ex){
             ex.printStackTrace();
         }
@@ -21,7 +24,7 @@ public class EntityListGetterImpl implements EntityListGetter {
     @Override
     public List<Person> getPersonList() {
         try {
-            getPeopleTask getPeopleTask = new getPeopleTask();
+            GetPeopleTask getPeopleTask = new GetPeopleTask();
             return getPeopleTask.execute().get();
         }catch(Exception ex){ex.printStackTrace();}
         return null;

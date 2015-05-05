@@ -6,6 +6,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+
+import ch.hslu.mobpro.youoweme.database.AsyncTasks.CreateUserTask;
 import ch.hslu.mobpro.youoweme.database.Person;
 
 
@@ -56,5 +58,9 @@ public class UserCreationActivity extends ActionBarActivity {
         person.setPassword(String.valueOf(this.passwordEditText));
         person.setFirstName(String.valueOf(this.firstNameEditText));
         person.setLastName(String.valueOf(this.lastNameEditText));
+
+        //ToDo: Denke rüfes falsch uf muesch no ändere damets dini Klasse ufrüft -> Han wölle vorwärts mache ;)
+        CreateUserTask createUserTask = new CreateUserTask();
+        createUserTask.execute(person.getFirstName(), person.getLastName(), person.geteMailAddress(), person.getPassword());
     }
 }
