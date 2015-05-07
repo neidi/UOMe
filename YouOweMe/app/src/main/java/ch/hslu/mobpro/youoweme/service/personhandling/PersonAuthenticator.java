@@ -4,6 +4,8 @@ import ch.hslu.mobpro.youoweme.database.EntityListGetter;
 import ch.hslu.mobpro.youoweme.database.EntityListGetterImpl;
 import ch.hslu.mobpro.youoweme.database.Person;
 
+import java.util.List;
+
 /**
  * Created by simonneidhart on 04.05.15.
  * Klasse zur Personenauthentifizierung.
@@ -29,8 +31,9 @@ public final class PersonAuthenticator {
     }
 
     public int authenticate(Person person) {
-        for (Person dtoPerson : PersonReader.getInstance().readPeople()) {
-            if (dtoPerson.geteMailAddress() == person.geteMailAddress() && dtoPerson.getPassword() == person.getPassword()) {
+        List<Person> people = PersonReader.getInstance().readPeople();
+        for (Person dtoPerson : people) {
+            if (dtoPerson.geteMailAddress().equals(person.geteMailAddress()) && dtoPerson.getPassword().equals(person.getPassword())) {
                 return dtoPerson.getId();
             }
         }
