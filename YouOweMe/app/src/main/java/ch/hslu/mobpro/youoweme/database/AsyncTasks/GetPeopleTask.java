@@ -23,44 +23,42 @@ public class GetPeopleTask extends AsyncTask<String, Void, ArrayList<Person>> {
 
     @Override
     protected ArrayList<Person> doInBackground(String... params) {
-
-    try {
-        String dblink = "http://10.177.1.183/mobprophp/getpeople.php";
-
-        HttpClient httpclient = new DefaultHttpClient();
-        HttpPost httppost = new HttpPost(dblink);
-
-        HttpResponse response = httpclient.execute(httppost);
-
-        String jsonResult = inputStreamToString(
-                response.getEntity().getContent()).toString();
-
-        JSONObject jsonObject = new JSONObject(jsonResult);
-
-        JSONArray jsonArray = jsonObject.getJSONArray("id");
-
         ArrayList<Person> arrayList = new ArrayList();
+        try {
+            String dblink = "http://10.177.1.183/mobprophp/getpeople.php";
 
-        for(int i=0;i < jsonArray.length();i++){
-            JSONObject c = jsonArray.getJSONObject(i);
-            Person person = new Person();
-            person.setId(c.getInt("id"));
-            person.setFirstName(c.getString("lastName"));
-            person.setLastName(c.getString("firstName"));
-            person.seteMailAddress(c.getString("emailAddress"));
-            person.setPassword(c.getString("password"));
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpPost httppost = new HttpPost(dblink);
 
-            arrayList.add(person);
+            HttpResponse response = httpclient.execute(httppost);
+
+            String jsonResult = inputStreamToString(
+                    response.getEntity().getContent()).toString();
+
+            JSONObject jsonObject = new JSONObject(jsonResult);
+
+            JSONArray jsonArray = jsonObject.getJSONArray("id");
 
 
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject c = jsonArray.getJSONObject(i);
+                Person person = new Person();
+                person.setId(c.getInt("id"));
+                person.setFirstName(c.getString("lastName"));
+                person.setLastName(c.getString("firstName"));
+                person.seteMailAddress(c.getString("emailAddress"));
+                person.setPassword(c.getString("password"));
+
+                arrayList.add(person);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
         }
+        System.out.println(arrayList.size());
+
         return arrayList;
 
-    }catch(Exception ex){
-        ex.printStackTrace();
-        System.out.println(ex.getMessage());
-    }
-        return null;
     }
 
     private StringBuilder inputStreamToString(InputStream is) {

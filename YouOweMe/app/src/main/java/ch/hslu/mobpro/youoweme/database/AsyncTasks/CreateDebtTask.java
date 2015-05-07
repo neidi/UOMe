@@ -32,7 +32,6 @@ public class CreateDebtTask extends AsyncTask<String, Void, String> {
             nameValuePairArrayList.add(new BasicNameValuePair("debitor_id", params[4]));
             nameValuePairArrayList.add(new BasicNameValuePair("reason", params[5]));
 
-
             String dblink = "http://10.177.1.183/mobprophp/createdebt.php";
 
             URL url = new URL(dblink);
@@ -44,8 +43,6 @@ public class CreateDebtTask extends AsyncTask<String, Void, String> {
             HttpEntity entity = response.getEntity();
             InputStream is = entity.getContent();
             Log.d("InsertStatementPerson", "Erfolgreich" + response);
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
