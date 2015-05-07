@@ -56,13 +56,16 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void onBtnLoginClicked(View view) {
-
         Person person = new Person();
         person.seteMailAddress(String.valueOf(edittxtUsername.getText()));
         person.setPassword(String.valueOf(edittxtPassword.getText()));
-        if (personAuthenticator.authenticate(person) > 0) {
-            Intent intent = new Intent(getApplicationContext(), CreditorActivity.class);
-            startActivity(intent);
+        try {
+            if (personAuthenticator.authenticate(person) > 0) {
+                Intent intent = new Intent(getApplicationContext(), CreditorActivity.class);
+                startActivity(intent);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 
