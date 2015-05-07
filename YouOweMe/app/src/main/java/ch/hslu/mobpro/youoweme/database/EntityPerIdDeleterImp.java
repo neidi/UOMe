@@ -11,7 +11,6 @@ public class EntityPerIdDeleterImp implements EntityPerIdDeleter {
     public boolean deleteDebt(int id) {
 
         try {
-            //ToDo: Momentan gibt es immer 2 ID's pro Debt -> Muss beide löschen nicht nur eine?
             DeleteDebtTask deleteDebtTask = new DeleteDebtTask();
             deleteDebtTask.execute(id);
             return true;

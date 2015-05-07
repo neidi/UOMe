@@ -13,7 +13,6 @@ public class EntityListGetterImpl implements EntityListGetter {
     @Override
     public List<Debt> getDebtList() {
         try {
-            //ToDo: Übergebe current user in debt
             GetDebtTask GetDebtTask = new GetDebtTask();
             return GetDebtTask.execute().get();
         }catch(Exception ex){

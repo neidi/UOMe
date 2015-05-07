@@ -14,4 +14,5 @@
     <string name="btnLoginText">Login</string>
     <string name="title_activity_user_creation">UserCreationActivity</string>
     <string name="btnCreateAccountText">Erstelle Account</string>
+    <string name="btnDebtCreateText">Erstelle Schuld</string>
 </resources>

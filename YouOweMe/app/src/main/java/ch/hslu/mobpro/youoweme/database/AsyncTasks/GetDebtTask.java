@@ -13,6 +13,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -43,32 +44,31 @@ public class GetDebtTask extends AsyncTask<String, Void, ArrayList<Debt>> {
                 JSONObject jsonObject = new JSONObject(jsonResult);
 
                 JSONArray jsonArray = jsonObject.getJSONArray("id");
-
-                ArrayList<Debt> arrayList = new ArrayList();
-
-                for (int i = 0; i < jsonArray.length(); i++) {
+                ArrayList<Debt> arrayList = new ArrayList<Debt>();
+                for(int i = 0; i< jsonArray.length();i++) {
                     JSONObject c = jsonArray.getJSONObject(i);
+
                     Debt debt = new Debt();
                     debt.setId(c.getInt("id"));
                     debt.setAmount(c.getDouble("amount"));
                     debt.setCreationDate((convertStringToDate(c.getString("creationDate"))));
                     debt.setDueDate(convertStringToDate((c.getString("dueDate"))));
 
-                    //ToDo: Get Person Object and serach for getted ID
-                    debt.setCreditor((Person) c.get("creditor_id"));
-                    debt.setDebitor((Person)c.get("debitor_id"));
+                    //ToDo: Teste
+                    debt.setCreditor(setIDtoPerson(c.getInt("creditor_id")));
+                    debt.setDebitor(setIDtoPerson(c.getInt("debitor_id")));
 
                     debt.setReason(c.getString("reason"));
 
                     arrayList.add(debt);
+
                 }
                 return arrayList;
-
             } catch (Exception ex) {
                 ex.printStackTrace();
                 System.out.println(ex.getMessage());
+                return null;
             }
-            return null;
         }
 
     public Date convertStringToDate(String dateString)
@@ -100,6 +100,22 @@ public class GetDebtTask extends AsyncTask<String, Void, ArrayList<Debt>> {
             }
             return answer;
         }
+
+    private Person setIDtoPerson(int id){
+        try {
+            GetPeopleTask getPeopleTask = new GetPeopleTask();
+            ArrayList<Person> arrayList = getPeopleTask.execute().get();
+            for(Person person: arrayList){
+                if(person.getId() == id){
+                    return person;
+                }
+            }
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+        return null;
+    }
 
 
 }

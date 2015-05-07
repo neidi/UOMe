@@ -56,7 +56,6 @@ public class GetPeopleTask extends AsyncTask<String, Void, ArrayList<Person>> {
             return null;
         }
         return arrayList;
-
     }
 
     private StringBuilder inputStreamToString(InputStream is) {

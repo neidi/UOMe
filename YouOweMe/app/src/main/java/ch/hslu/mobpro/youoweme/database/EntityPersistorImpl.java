@@ -1,5 +1,6 @@
 package ch.hslu.mobpro.youoweme.database;
 
+import ch.hslu.mobpro.youoweme.database.AsyncTasks.CreateDebtTask;
 import ch.hslu.mobpro.youoweme.database.AsyncTasks.CreateUserTask;
 
 /**
@@ -14,6 +15,7 @@ public class EntityPersistorImpl implements EntityPersistor {
 
     @Override
     public void saveDebt(Debt debt) {
-
+        CreateDebtTask createDebtTask = new CreateDebtTask();
+        createDebtTask.execute(debt.getCreationDate().toString(), debt.getDueDate().toString(), Double.toString(debt.getAmount()), Integer.toString(debt.getCreditor().getId()), Integer.toString(debt.getDebitor().getId()), debt.getReason());
     }
 }

@@ -7,12 +7,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
-import ch.hslu.mobpro.youoweme.database.AsyncTasks.CreateUserTask;
 import ch.hslu.mobpro.youoweme.database.Person;
+import ch.hslu.mobpro.youoweme.service.personhandling.PersonCreator;
 
 
 public class UserCreationActivity extends ActionBarActivity {
 
+    PersonCreator personCreator;
     private EditText emailEditText;
     private EditText passwordEditText;
     private EditText firstNameEditText;
@@ -21,14 +22,17 @@ public class UserCreationActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.emailEditText = (EditText) findViewById(R.id.emailEditText);
-        this.passwordEditText = (EditText) findViewById(R.id.passwordEditText);
-        this.firstNameEditText = (EditText) findViewById(R.id.firstNameEditText);
-        this.lastNameEditText = (EditText) findViewById(R.id.lastNameEditText);
-
         setContentView(R.layout.activity_user_creation);
-    }
 
+        personCreator =  PersonCreator.getInstance();
+
+        emailEditText = (EditText) findViewById(R.id.emailEditText);
+        passwordEditText = (EditText) findViewById(R.id.passwordEditText);
+        firstNameEditText = (EditText) findViewById(R.id.firstNameEditText);
+        lastNameEditText = (EditText) findViewById(R.id.lastNameEditText);
+
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -53,14 +57,16 @@ public class UserCreationActivity extends ActionBarActivity {
     }
 
     public void onCreateAccountButtonClicked(View view){
-        Person person = new Person();
-        person.seteMailAddress(String.valueOf(this.emailEditText.getText()));
-        person.setPassword(String.valueOf(this.passwordEditText));
-        person.setFirstName(String.valueOf(this.firstNameEditText));
-        person.setLastName(String.valueOf(this.lastNameEditText));
+        try {
+            Person person = new Person();
+            person.seteMailAddress(String.valueOf(emailEditText.getText()));
+            person.setPassword(String.valueOf(this.passwordEditText));
+            person.setFirstName(String.valueOf(this.firstNameEditText));
+            person.setLastName(String.valueOf(this.lastNameEditText));
 
-        //ToDo: Denke rüfes falsch uf muesch no ändere damets dini Klasse ufrüft -> Han wölle vorwärts mache ;)
-        CreateUserTask createUserTask = new CreateUserTask();
-        createUserTask.execute(person.getFirstName(), person.getLastName(), person.geteMailAddress(), person.getPassword());
+            personCreator.createPerson(person);
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
     }
 }

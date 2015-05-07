@@ -6,8 +6,9 @@ import ch.hslu.mobpro.youoweme.database.*;
  * Created by simonneidhart on 04.05.15.
  * Klasse zur Personenerstellung
  */
-public class PersonCreator {
+public final class PersonCreator {
     private static PersonCreator instance;
+
     private final EntityListGetter entityListGetter;
     private final EntityPersistor entityPersistor;
 
@@ -35,6 +36,13 @@ public class PersonCreator {
      * @return die ID des neu erstellten Datenbankeintrages
      */
     public int createPerson(Person person) {
-        return 0;
+        try {
+            entityPersistor.savePerson(person);
+        }catch(Exception ex){
+            ex.printStackTrace();
+            return -1;
+        }
+        return person.getId();
     }
+
 }
