@@ -16,10 +16,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 
-public class CreditorActivity extends ActionBarActivity {
+public class DebtActivity extends ActionBarActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -30,6 +31,8 @@ public class CreditorActivity extends ActionBarActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     SectionsPagerAdapter mSectionsPagerAdapter;
+    ListView listViewCredits = (ListView) findViewById(R.id.listViewCredits);
+    ListView listViewDebts = (ListView) findViewById(R.id.listViewDebts);
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -90,7 +93,10 @@ public class CreditorActivity extends ActionBarActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return CreditorFragment.newInstance(position + 1);
+            if (position == 0) {
+                return CreditorFragment.newInstance(position + 1);
+            }
+            return DebitorFragment.newInstance(position);
         }
 
         @Override
@@ -144,6 +150,7 @@ public class CreditorActivity extends ActionBarActivity {
             return rootView;
         }
     }
+
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -173,6 +180,8 @@ public class CreditorActivity extends ActionBarActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_debitor, container, false);
+            ListView listViewDebitor = (ListView)getView().findViewById(R.id.listViewDebts);
+
             return rootView;
         }
     }
