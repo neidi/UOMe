@@ -1,5 +1,6 @@
 package ch.hslu.mobpro.youoweme.database;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ch.hslu.mobpro.youoweme.database.AsyncTasks.GetDebtTask;
@@ -25,7 +26,7 @@ public class EntityListGetterImpl implements EntityListGetter {
     public List<Person> getPersonList() {
         try {
             GetPeopleTask getPeopleTask = new GetPeopleTask();
-            return getPeopleTask.execute().get();
+            return  getPeopleTask.execute().get();
         }catch(Exception ex){ex.printStackTrace();}
         return null;
     }

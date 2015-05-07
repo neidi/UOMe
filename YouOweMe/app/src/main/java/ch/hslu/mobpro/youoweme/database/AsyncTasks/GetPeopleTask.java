@@ -55,8 +55,6 @@ public class GetPeopleTask extends AsyncTask<String, Void, ArrayList<Person>> {
             ex.printStackTrace();
             return null;
         }
-        System.out.println(arrayList.size());
-
         return arrayList;
 
     }
