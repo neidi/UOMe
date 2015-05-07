@@ -1,11 +1,13 @@
 package ch.hslu.mobpro.youoweme.app;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import java.util.ArrayList;
@@ -21,6 +23,8 @@ public class MainActivity extends ActionBarActivity {
     PersonAuthenticator personAuthenticator;
     EditText edittxtUsername;
     EditText edittxtPassword;
+    CheckBox checkBoxRememberMe;
+    SharedPreferences preferences;
 
 
     @Override
@@ -30,6 +34,10 @@ public class MainActivity extends ActionBarActivity {
         personAuthenticator = PersonAuthenticator.getInstance();
         edittxtPassword = (EditText) findViewById(R.id.edittxtPassword);
         edittxtUsername = (EditText) findViewById(R.id.edittxtUsername);
+        checkBoxRememberMe = (CheckBox) findViewById(R.id.checkBoxRememberMe);
+        preferences = getPreferences(MODE_PRIVATE);
+        String username = preferences.getString("txtUsernameText", "");
+        String password = preferences.getString("txtPasswordText", "");
     }
 
 
@@ -61,8 +69,14 @@ public class MainActivity extends ActionBarActivity {
         person.setPassword(String.valueOf(edittxtPassword.getText()));
         try {
             if (personAuthenticator.authenticate(person) > 0) {
-                Intent intent = new Intent(getApplicationContext(), CreditorActivity.class);
-                startActivity(intent);
+                if (checkBoxRememberMe.isChecked()) {
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("txtUsernameText", String.valueOf(edittxtUsername.getText()));
+                    editor.putString("txtPasswordText", String.valueOf(edittxtPassword.getText()));
+                    editor.apply();
+                }
+                //Intent intent = new Intent(getApplicationContext(), DebtActivity.class);
+                //startActivity(intent);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
