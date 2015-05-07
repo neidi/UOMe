@@ -33,7 +33,7 @@ public final class PersonAuthenticator {
     public int authenticate(Person person) {
         List<Person> people = PersonReader.getInstance().readPeople();
         for (Person dtoPerson : people) {
-            if (dtoPerson.geteMailAddress() == person.geteMailAddress() && dtoPerson.getPassword() == person.getPassword()) {
+            if (dtoPerson.geteMailAddress().equals(person.geteMailAddress()) && dtoPerson.getPassword().equals(person.getPassword())) {
                 return dtoPerson.getId();
             }
         }
