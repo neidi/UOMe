@@ -13,6 +13,7 @@ import java.util.List;
 public final class PersonAuthenticator {
     private static PersonAuthenticator instance;
     private final EntityListGetter entityListGetter;
+    private static int authenticationId;
 
     PersonAuthenticator(EntityListGetter entityListGetter) {
         this.entityListGetter = entityListGetter;
@@ -34,9 +35,14 @@ public final class PersonAuthenticator {
         List<Person> people = PersonReader.getInstance().readPeople();
         for (Person dtoPerson : people) {
             if (dtoPerson.geteMailAddress().equals(person.geteMailAddress()) && dtoPerson.getPassword().equals(person.getPassword())) {
-                return dtoPerson.getId();
+                authenticationId = dtoPerson.getId();
+                return authenticationId;
             }
         }
         return -1;
+    }
+
+    public static int getAuthenticationId(){
+        return authenticationId;
     }
 }

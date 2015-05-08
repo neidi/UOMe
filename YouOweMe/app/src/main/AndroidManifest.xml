@@ -26,6 +26,10 @@
             android:name=".UserCreationActivity"
             android:label="@string/title_activity_user_creation" >
         </activity>
+        <activity
+            android:name=".DebtActivity"
+            android:label="@string/title_activity_debt" >
+        </activity>
     </application>
 
 </manifest>
