@@ -25,4 +25,8 @@ public class DebtDeleter {
     public boolean deleteDebt(int debtId) {
         return entityPerIdDeleter.deleteDebt(debtId);
     }
+
+    public boolean markDebtAsDeleted(int debtID){
+        return entityPerIdDeleter.markDebtAsDeleted(debtID);
+    }
 }

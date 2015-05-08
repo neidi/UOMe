@@ -56,10 +56,10 @@ public class GetDebtTask extends AsyncTask<String, Void, ArrayList<Debt>> {
                     debt.setAmount(c.getDouble("amount"));
                     debt.setCreationDate((convertStringToDate(c.getString("creationDate"))));
                     debt.setDueDate(convertStringToDate((c.getString("dueDate"))));
+                    int marker = c.getInt("markedasdeleted");
+                    if(marker == 0){ debt.setMarkedAsDeleted(false);   }
+                    else{ debt.setMarkedAsDeleted(true);}
 
-
-
-                    //ToDo: Teste
                     debt.setCreditor(c.getInt("creditor_id"));
                     debt.setDebitor(c.getInt("debitor_id"));
 

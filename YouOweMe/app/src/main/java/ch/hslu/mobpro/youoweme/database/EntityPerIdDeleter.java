@@ -7,4 +7,6 @@ public interface EntityPerIdDeleter {
     boolean deleteDebt(int id);
 
     boolean deletePerson(int id);
+
+    boolean markDebtAsDeleted(int id);
 }

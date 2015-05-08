@@ -13,6 +13,7 @@ public class Debt {
     private String reason;
     private int creditorid;
     private int debitorid;
+    private boolean markedAsDeleted;
 
     public int getId() {
         return id;
@@ -68,5 +69,13 @@ public class Debt {
 
     public void setDebitor(int debitor) {
         this.debitorid = debitor;
+    }
+
+    public boolean isMarkedAsDeleted() {
+        return markedAsDeleted;
+    }
+
+    public void setMarkedAsDeleted(boolean markedAsDeleted) {
+        this.markedAsDeleted = markedAsDeleted;
     }
 }
