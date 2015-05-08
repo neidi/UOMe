@@ -85,6 +85,9 @@ public class DebtCreationActivity extends ActionBarActivity implements View.OnCl
         catch(Exception ex) {
             ex.printStackTrace();
         }
+        finally {
+            super.finish();
+        }
     }
 
 

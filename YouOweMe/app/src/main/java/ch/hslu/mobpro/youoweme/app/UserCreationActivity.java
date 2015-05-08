@@ -68,5 +68,8 @@ public class UserCreationActivity extends ActionBarActivity {
         }catch(Exception ex){
             ex.printStackTrace();
         }
+        finally {
+            super.finish();
+        }
     }
 }
