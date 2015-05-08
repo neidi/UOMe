@@ -41,8 +41,8 @@ public class MainActivity extends ActionBarActivity {
         edittxtUsername = (EditText) findViewById(R.id.edittxtUsername);
         checkBoxRememberMe = (CheckBox) findViewById(R.id.checkBoxRememberMe);
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String username = preferences.getString("txtUsernameText", "");
-        String password = preferences.getString("txtPasswordText", "");
+        edittxtUsername.setText(preferences.getString("txtUsernameText", ""));
+        edittxtPassword.setText(preferences.getString("txtPasswordText", ""));
     }
 
 
