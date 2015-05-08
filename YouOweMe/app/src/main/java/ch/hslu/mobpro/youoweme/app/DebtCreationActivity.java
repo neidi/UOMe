@@ -73,13 +73,7 @@ public class DebtCreationActivity extends ActionBarActivity implements View.OnCl
                 }
             }
 
-
-
-
-            //ToDo: Nur für Test unbedingt löschen!!!!
-            debt.setCreditor(1);
-
-
+            debt.setCreditor(PersonAuthenticator.getAuthenticationId());
             debt.setCreationDate(c.getTime());
             Date date = simpleDateFormat.parse(datePickerEditText.getText().toString());
             debt.setDueDate(simpleDateFormat.parse(datePickerEditText.getText().toString()));

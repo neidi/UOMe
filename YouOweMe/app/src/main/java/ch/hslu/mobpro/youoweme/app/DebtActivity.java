@@ -2,6 +2,7 @@ package ch.hslu.mobpro.youoweme.app;
 
 import java.util.Locale;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class DebtActivity extends ActionBarActivity {
@@ -68,6 +70,10 @@ public class DebtActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void onBtnCreateDebtClicked(View view){
+        Intent intent = new Intent(this, DebtCreationActivity.class);
+        startActivity(intent);
+    }
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to

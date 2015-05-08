@@ -14,6 +14,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/btnCreateDebtText"
-            android:id="@+id/btnCreateDebt" android:layout_gravity="left|bottom"/>
+            android:id="@+id/btnCreateDebt" android:layout_gravity="left|bottom" android:onClick="onBtnCreateDebtClicked"/>
 
 </FrameLayout>

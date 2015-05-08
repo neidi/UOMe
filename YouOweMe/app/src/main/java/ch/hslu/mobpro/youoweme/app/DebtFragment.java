@@ -5,6 +5,8 @@ package ch.hslu.mobpro.youoweme.app;
  */
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,13 +17,16 @@ import android.widget.ListView;
 import android.widget.Toast;
 import ch.hslu.mobpro.youoweme.database.Debt;
 import ch.hslu.mobpro.youoweme.database.EntityListGetterImpl;
+import ch.hslu.mobpro.youoweme.database.EntityPerIdDeleterImp;
+import ch.hslu.mobpro.youoweme.service.debthandling.DebtDeleter;
+import ch.hslu.mobpro.youoweme.service.debthandling.DebtReader;
 import ch.hslu.mobpro.youoweme.service.personhandling.PersonAuthenticator;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A placeholder fragment containing a simple view.
+ * A fragment containing debts or credits
  */
 public class DebtFragment extends Fragment {
     /**
@@ -29,6 +34,7 @@ public class DebtFragment extends Fragment {
      * fragment.
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
+    private DebtReader debtReader;
 
     /**
      * Returns a new instance of this fragment for the given section
@@ -48,75 +54,69 @@ public class DebtFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View rootView;
+        debtReader = DebtReader.getInstance();
+        Debt[] debtsArray = new Debt[0];
+        List<Debt> debts = debtReader.readDebts();
+        List<Debt> debtsToRemove = new ArrayList<Debt>();
+        final String dialogString;
         if (getArguments().getInt(ARG_SECTION_NUMBER) == 0) {
-            View rootView = inflater.inflate(R.layout.fragment_credit_list, container, false);
-            System.out.println(getActivity());
-            Debt[] debtsArray = new Debt[0];
-            List<Debt> debts = new EntityListGetterImpl().getDebtList();
-
-            List<Debt> debtsToRemove = new ArrayList<Debt>();
+            dialogString = "gelöscht";
+            rootView = inflater.inflate(R.layout.fragment_credit_list, container, false);
             for (int i = 0; i < debts.size(); i++) {
                 if (debts.get(i).getCreditor() != PersonAuthenticator.getAuthenticationId()) {
                     debtsToRemove.add(debts.get(i));
                 }
             }
-            for (int i = 0; i < debtsToRemove.size(); i++) {
-                debts.remove(debtsToRemove.get(i));
-            }
-            debtsArray = debts.toArray(debtsArray);
-            MySimpleArrayAdapter adapter = new MySimpleArrayAdapter(getActivity(), debtsArray);
-            ListView listView = (ListView) rootView.findViewById(R.id.debtList);
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                    Toast.makeText(getActivity(),
-                            ((Debt) adapterView.getItemAtPosition(position)).getReason(),
-                            Toast.LENGTH_SHORT).show();
-                }
-            });
-            try {
-                listView.setAdapter(adapter);
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-            return rootView;
         } else {
-            View rootView = inflater.inflate(R.layout.fragment_debit_list, container, false);
+            dialogString = "zum löschen freigegeben";
+            rootView = inflater.inflate(R.layout.fragment_debit_list, container, false);
             System.out.println(getActivity());
-            Debt[] debtsArray = new Debt[0];
-            List<Debt> debts = new EntityListGetterImpl().getDebtList();
-            List<Debt> debtsToRemove = new ArrayList<Debt>();
             for (int i = 0; i < debts.size(); i++) {
                 if (debts.get(i).getDebitor() != PersonAuthenticator.getAuthenticationId()) {
                     debtsToRemove.add(debts.get(i));
                 }
             }
-            for (int i = 0; i < debtsToRemove.size(); i++) {
-                debts.remove(debtsToRemove.get(i));
-            }
-            debtsArray = debts.toArray(debtsArray);
-            MySimpleArrayAdapter adapter = new MySimpleArrayAdapter(getActivity(), debtsArray);
-            ListView listView = (ListView) rootView.findViewById(R.id.debtList);
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
-                    DeleteDebtDialog deleteDebtDialog = new DeleteDebtDialog();
-                    deleteDebtDialog.show(getActivity().getSupportFragmentManager(), "");
-                    if (deleteDebtDialog.getResult()) {
-                        Toast.makeText(getActivity(),
-                                ((Debt) adapterView.getItemAtPosition(position)).getReason(),
-                                Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-            try {
-                listView.setAdapter(adapter);
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-            return rootView;
         }
+        for (int i = 0; i < debtsToRemove.size(); i++) {
+            debts.remove(debtsToRemove.get(i));
+        }
+        debtsArray = debts.toArray(debtsArray);
+        MySimpleArrayAdapter adapter = new MySimpleArrayAdapter(getActivity(), debtsArray, getArguments().getInt(ARG_SECTION_NUMBER) == 0);
+        ListView listView = (ListView) rootView.findViewById(R.id.debtList);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(final AdapterView<?> adapterView, View view, final int position, long l) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+                builder.setMessage(R.string.really_delete_debt)
+                        .setTitle(R.string.really_delete_debt);
+
+                builder.setPositiveButton("löschen", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(getActivity(),
+                                "Schuld mit dem Grund "
+                                        + ((Debt) adapterView.getItemAtPosition(position)).getReason()
+                                        + dialogString,
+                                Toast.LENGTH_SHORT).show();
+                        DebtDeleter debtDeleter = DebtDeleter.getInstance();
+                        if (getArguments().getInt(ARG_SECTION_NUMBER) == 0) {
+                            debtDeleter.deleteDebt(((Debt) adapterView.getItemAtPosition(position)).getId());
+                        } else {
+                            debtDeleter.markDebtAsDeleted(((Debt) adapterView.getItemAtPosition(position)).getId());
+                        }
+                    }
+                });
+
+                AlertDialog deleteDebtDialog = builder.create();
+                deleteDebtDialog.show();
+
+            }
+        });
+        listView.setAdapter(adapter);
+        return rootView;
     }
 }
 
