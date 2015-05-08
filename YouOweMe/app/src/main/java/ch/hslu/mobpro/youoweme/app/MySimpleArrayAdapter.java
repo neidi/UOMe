@@ -35,7 +35,7 @@ public class MySimpleArrayAdapter extends ArrayAdapter<Debt> {
         TextView debtInformationLine = (TextView) rowView.findViewById(R.id.debtInformationLine);
 
         Debt debt = values[position];
-        idOfDebt.setText(debt.getId());
+        idOfDebt.setText(String.valueOf(debt.getId()));
         for(Person person : new EntityListGetterImpl().getPersonList()){
             if(person.getId() == debt.getCreditor()){
                 otherPerson.setText(person.geteMailAddress());
