@@ -19,6 +19,7 @@ import ch.hslu.mobpro.youoweme.database.AsyncTasks.GetDebtTask;
 import ch.hslu.mobpro.youoweme.database.EntityListGetter;
 import ch.hslu.mobpro.youoweme.database.EntityListGetterImpl;
 import ch.hslu.mobpro.youoweme.database.Person;
+import ch.hslu.mobpro.youoweme.service.debthandling.DebtDeleter;
 import ch.hslu.mobpro.youoweme.service.personhandling.PersonAuthenticator;
 
 

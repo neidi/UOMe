@@ -60,9 +60,9 @@ public class UserCreationActivity extends ActionBarActivity {
         try {
             Person person = new Person();
             person.seteMailAddress(String.valueOf(emailEditText.getText()));
-            person.setPassword(String.valueOf(this.passwordEditText));
-            person.setFirstName(String.valueOf(this.firstNameEditText));
-            person.setLastName(String.valueOf(this.lastNameEditText));
+            person.setPassword(String.valueOf(passwordEditText.getText()));
+            person.setFirstName(String.valueOf(firstNameEditText.getText()));
+            person.setLastName(String.valueOf(lastNameEditText.getText()));
 
             personCreator.createPerson(person);
         }catch(Exception ex){
