@@ -81,8 +81,8 @@ public class MainActivity extends ActionBarActivity {
                     editor.putString("txtPasswordText", String.valueOf(edittxtPassword.getText()));
                     editor.apply();
                 }
-                //Intent intent = new Intent(getApplicationContext(), DebtActivity.class);
-                //startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), DebtActivity.class);
+                startActivity(intent);
             }
         } catch (Exception ex) {
             ex.printStackTrace();

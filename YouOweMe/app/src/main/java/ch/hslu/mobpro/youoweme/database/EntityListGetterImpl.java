@@ -14,7 +14,6 @@ public class EntityListGetterImpl implements EntityListGetter {
     public List<Debt> getDebtList() {
         try {
             GetDebtTask getDebtTask = new GetDebtTask();
-            List<Debt> list = getDebtTask.execute().get();
             return getDebtTask.execute().get();
         }catch(Exception ex){
             ex.printStackTrace();

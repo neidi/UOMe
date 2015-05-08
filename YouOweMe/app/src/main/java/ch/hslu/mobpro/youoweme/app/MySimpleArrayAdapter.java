@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import ch.hslu.mobpro.youoweme.database.Debt;
+import ch.hslu.mobpro.youoweme.database.EntityListGetterImpl;
+import ch.hslu.mobpro.youoweme.database.Person;
 
 /**
  * Created by simonneidhart on 08.05.15.
@@ -34,7 +36,11 @@ public class MySimpleArrayAdapter extends ArrayAdapter<Debt> {
 
         Debt debt = values[position];
         idOfDebt.setText(debt.getId());
-        otherPerson.setText(debt.getDebitor().geteMailAddress());
+        for(Person person : new EntityListGetterImpl().getPersonList()){
+            if(person.getId() == debt.getCreditor()){
+                otherPerson.setText(person.geteMailAddress());
+            }
+        }
         amount.setText(String.valueOf(debt.getAmount()));
         debtInformationLine.setText("Fällig am: " + String.valueOf(debt.getDueDate()));
         return rowView;
