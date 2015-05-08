@@ -45,7 +45,6 @@ public class DebtCreationActivity extends ActionBarActivity implements View.OnCl
         reasonEditText = (EditText) findViewById(R.id.reasonEditText);
         datePickerEditText = (EditText) findViewById(R.id.datePickerEditText);
 
-
         datePickerEditText.setOnClickListener(this);
         simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -57,10 +56,7 @@ public class DebtCreationActivity extends ActionBarActivity implements View.OnCl
                 newDate.set(year, monthOfYear, dayOfMonth);
                 datePickerEditText.setText(simpleDateFormat.format(newDate.getTime()));
             }
-
         },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
-
-
     }
 
     public void onCreateDebtClicked(View view) {
@@ -80,7 +76,8 @@ public class DebtCreationActivity extends ActionBarActivity implements View.OnCl
 
 
 
-
+            //ToDo: Nur für Test unbedingt löschen!!!!
+            debt.setCreditor(1);
 
 
             debt.setCreationDate(c.getTime());
