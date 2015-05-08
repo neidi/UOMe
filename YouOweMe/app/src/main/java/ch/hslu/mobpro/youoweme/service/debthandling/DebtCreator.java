@@ -35,6 +35,13 @@ public class DebtCreator {
      * @return die ID des Schuldenobjekts
      */
     public int createDebt(Debt debt) {
-        return 0;
+        try {
+            entityPersistor.saveDebt(debt);
+            return debt.getId();
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+            return -1;
+        }
     }
 }

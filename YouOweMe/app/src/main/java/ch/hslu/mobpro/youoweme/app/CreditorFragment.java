@@ -43,13 +43,19 @@ public class CreditorFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_credit_list, container, false);
-        System.out.println(getActivity());
-        Debt[] debts = (Debt[]) new EntityListGetterImpl().getDebtList().toArray();
-        MySimpleArrayAdapter adapter = new MySimpleArrayAdapter(getActivity(), debts);
-        ListView listView = (ListView) getView().findViewById(R.id.debtList);
-        listView.setAdapter(adapter);
-        return rootView;
+        try {
+            View rootView = inflater.inflate(R.layout.fragment_credit_list, container, false);
+            System.out.println(getActivity());
+            Debt[] debts = (Debt[]) new EntityListGetterImpl().getDebtList().toArray();
+            MySimpleArrayAdapter adapter = new MySimpleArrayAdapter(getActivity(), debts);
+            ListView listView = (ListView) getView().findViewById(R.id.debtList);
+            listView.setAdapter(adapter);
+            return rootView;
+        }catch(Exception ex)
+        {
+            ex.printStackTrace();
+            return null;
+        }
     }
 }
 

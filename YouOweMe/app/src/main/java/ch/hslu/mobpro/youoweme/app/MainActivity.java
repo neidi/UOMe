@@ -91,8 +91,11 @@ public class MainActivity extends ActionBarActivity {
 
 
     public void onCreateUserClick(View view) {
-
-        Intent intent = new Intent(this, UserCreationActivity.class);
+        Intent intent = new Intent(this, DebtCreationActivity.class);
         startActivity(intent);
+
+
+        //Intent intent = new Intent(this, UserCreationActivity.class);
+        //startActivity(intent);
     }
 }
