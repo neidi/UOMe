@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CreditorActivity"
+            android:name=".DebtCreationActivity"
             android:label="@string/title_activity_creditor" >
         </activity>
         <activity

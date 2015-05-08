@@ -11,8 +11,8 @@ public class Debt {
     private Date dueDate;
     private double amount;
     private String reason;
-    private Person creditor;
-    private Person debitor;
+    private int creditorid;
+    private int debitorid;
 
     public int getId() {
         return id;
@@ -54,19 +54,19 @@ public class Debt {
         this.reason = reason;
     }
 
-    public Person getCreditor() {
-        return creditor;
+    public int getCreditor() {
+        return creditorid;
     }
 
-    public void setCreditor(Person creditor) {
-        this.creditor = creditor;
+    public void setCreditor(int creditor) {
+        this.creditorid = creditor;
     }
 
-    public Person getDebitor() {
-        return debitor;
+    public int getDebitor() {
+        return debitorid;
     }
 
-    public void setDebitor(Person debitor) {
-        this.debitor = debitor;
+    public void setDebitor(int debitor) {
+        this.debitorid = debitor;
     }
 }

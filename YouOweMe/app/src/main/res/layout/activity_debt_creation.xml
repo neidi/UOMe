@@ -13,53 +13,91 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="User:"
-            android:id="@+id/txtViewUser" android:layout_alignParentTop="true" android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" android:layout_marginTop="36dp"
-            android:layout_alignRight="@+id/txtViewAmount" android:layout_alignEnd="@+id/txtViewAmount"/>
+            android:id="@+id/txtViewUser"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
               android:textAppearance="?android:attr/textAppearanceMedium"
               android:text="Betrag:"
               android:id="@+id/txtViewAmount"
-              android:layout_below="@+id/userEditText" android:layout_alignParentLeft="true"
-              android:layout_alignParentStart="true"/>
+        android:layout_below="@+id/reasonEditText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="45dp" />
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Grund:"
             android:id="@+id/txtViewReason"
-            android:layout_below="@+id/passwordEditText" android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"/>
+        android:layout_below="@+id/txtViewUser"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="51dp" />
+
+
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Fälligkeit:"
             android:id="@+id/txtViewDueDate"
-            android:layout_marginTop="36dp"
-            android:layout_alignParentLeft="true" android:layout_alignParentStart="true"/>
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="text"
             android:text="UserName"
-            android:ems="10"
             android:id="@+id/userEditText"
-            android:layout_alignParentRight="true" android:layout_alignParentEnd="true"/>
+        android:layout_alignTop="@+id/txtViewUser"
+        android:layout_alignLeft="@+id/reasonEditText"
+        android:layout_alignStart="@+id/reasonEditText" />
+
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="number"
         android:text="Betrag"
         android:id="@+id/amountEditText"
-        />
+        android:layout_alignTop="@+id/txtViewAmount"
+        android:layout_alignLeft="@+id/datePickerEditText"
+        android:layout_alignStart="@+id/datePickerEditText" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:text="Grund..."
+        android:id="@+id/reasonEditText"
+        android:layout_alignTop="@+id/txtViewReason"
+        android:layout_alignLeft="@+id/amountEditText"
+        android:layout_alignStart="@+id/amountEditText" />
 
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/btnDebtCreateText"
             android:id="@+id/createDebtButton"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" android:onClick="onCreateDebtClicked"/>
+        android:onClick="onCreateDebtClicked"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/datePickerEditText"
+        android:text="Bsp: 20.1.2015"
+        android:layout_alignTop="@+id/txtViewDueDate"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
 </RelativeLayout>

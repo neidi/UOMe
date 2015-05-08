@@ -11,9 +11,12 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import ch.hslu.mobpro.youoweme.database.Debt;
 import ch.hslu.mobpro.youoweme.database.AsyncTasks.GetDebtTask;
+import ch.hslu.mobpro.youoweme.database.EntityListGetter;
+import ch.hslu.mobpro.youoweme.database.EntityListGetterImpl;
 import ch.hslu.mobpro.youoweme.database.Person;
 import ch.hslu.mobpro.youoweme.service.personhandling.PersonAuthenticator;
 
@@ -64,6 +67,9 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void onBtnLoginClicked(View view) {
+
+
+
         Person person = new Person();
         person.seteMailAddress(String.valueOf(edittxtUsername.getText()));
         person.setPassword(String.valueOf(edittxtPassword.getText()));
@@ -75,8 +81,8 @@ public class MainActivity extends ActionBarActivity {
                     editor.putString("txtPasswordText", String.valueOf(edittxtPassword.getText()));
                     editor.apply();
                 }
-                Intent intent = new Intent(getApplicationContext(), DebtActivity.class);
-                startActivity(intent);
+                //Intent intent = new Intent(getApplicationContext(), DebtActivity.class);
+                //startActivity(intent);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -85,6 +91,7 @@ public class MainActivity extends ActionBarActivity {
 
 
     public void onCreateUserClick(View view) {
+
         Intent intent = new Intent(this, UserCreationActivity.class);
         startActivity(intent);
     }

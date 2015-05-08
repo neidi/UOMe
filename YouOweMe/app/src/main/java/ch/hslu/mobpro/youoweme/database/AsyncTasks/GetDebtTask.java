@@ -27,6 +27,9 @@ import ch.hslu.mobpro.youoweme.database.Person;
  */
 public class GetDebtTask extends AsyncTask<String, Void, ArrayList<Debt>> {
 
+
+
+
         @Override
         protected ArrayList<Debt> doInBackground(String... params) {
 
@@ -54,9 +57,11 @@ public class GetDebtTask extends AsyncTask<String, Void, ArrayList<Debt>> {
                     debt.setCreationDate((convertStringToDate(c.getString("creationDate"))));
                     debt.setDueDate(convertStringToDate((c.getString("dueDate"))));
 
+
+
                     //ToDo: Teste
-                    debt.setCreditor(setIDtoPerson(c.getInt("creditor_id")));
-                    debt.setDebitor(setIDtoPerson(c.getInt("debitor_id")));
+                    debt.setCreditor(c.getInt("creditor_id"));
+                    debt.setDebitor(c.getInt("debitor_id"));
 
                     debt.setReason(c.getString("reason"));
 
@@ -96,26 +101,10 @@ public class GetDebtTask extends AsyncTask<String, Void, ArrayList<Debt>> {
                 }
             } catch (IOException e) {
                 e.printStackTrace();
-
             }
             return answer;
         }
 
-    private Person setIDtoPerson(int id){
-        try {
-            GetPeopleTask getPeopleTask = new GetPeopleTask();
-            ArrayList<Person> arrayList = getPeopleTask.execute().get();
-            for(Person person: arrayList){
-                if(person.getId() == id){
-                    return person;
-                }
-            }
-        }
-        catch(Exception ex){
-            ex.printStackTrace();
-        }
-        return null;
-    }
 
 
 }
