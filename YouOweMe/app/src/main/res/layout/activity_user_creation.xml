@@ -43,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="E-Mail"
+            android:hint="E-Mail"
             android:ems="10"
             android:id="@+id/emailEditText" android:layout_alignTop="@+id/txtViewEmail"
             android:layout_alignParentRight="true" android:layout_alignParentEnd="true"/>
@@ -58,13 +58,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="Vorname"
+            android:hint="Vorname"
             android:ems="10"
             android:id="@+id/firstNameEditText"
             android:layout_alignBaseline="@+id/txtViewFirstName"
             android:layout_alignLeft="@+id/passwordEditText" android:layout_alignStart="@+id/passwordEditText"/>
     <EditText android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:inputType="textPersonName" android:text="Nachname" android:ems="10" android:id="@+id/lastNameEditText"
+              android:inputType="textPersonName" android:hint="Nachname" android:ems="10" android:id="@+id/lastNameEditText"
               android:layout_alignBottom="@+id/txtViewLastName" android:layout_alignLeft="@+id/firstNameEditText"
               android:layout_alignStart="@+id/firstNameEditText"/>
     <Button

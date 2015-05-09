@@ -29,7 +29,6 @@ public class MarkDebtTask extends AsyncTask<Integer, Void, Boolean> {
 
             String dblink = "http://10.177.1.183/mobprophp/markdebt.php";
 
-            URL url = new URL(dblink);
             HttpClient client = new DefaultHttpClient();
             HttpPost httpPost = new HttpPost(dblink);
             httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairArrayList));

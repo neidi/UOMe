@@ -1,5 +1,7 @@
 package ch.hslu.mobpro.youoweme.database;
 
+import java.text.SimpleDateFormat;
+
 import ch.hslu.mobpro.youoweme.database.AsyncTasks.CreateDebtTask;
 import ch.hslu.mobpro.youoweme.database.AsyncTasks.CreateUserTask;
 
@@ -15,7 +17,8 @@ public class EntityPersistorImpl implements EntityPersistor {
 
     @Override
     public void saveDebt(Debt debt) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         CreateDebtTask createDebtTask = new CreateDebtTask();
-        createDebtTask.execute(debt.getCreationDate().toString(), debt.getDueDate().toString(), Double.toString(debt.getAmount()), Integer.toString(debt.getCreditor()), Integer.toString(debt.getDebitor()), debt.getReason());
+        createDebtTask.execute(simpleDateFormat.format(debt.getCreationDate()), simpleDateFormat.format(debt.getDueDate()), Double.toString(debt.getAmount()), Integer.toString(debt.getCreditor()), Integer.toString(debt.getDebitor()), debt.getReason());
     }
 }

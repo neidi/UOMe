@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -72,20 +73,21 @@ public class DebtCreationActivity extends ActionBarActivity implements View.OnCl
                     debt.setDebitor(person.getId());
                 }
             }
+            if(debt.getDebitor() == 0){
+                Toast.makeText(this, "Benutzer nicht gefunden!", Toast.LENGTH_LONG).show();
+                return;
+            }
 
             debt.setCreditor(PersonAuthenticator.getAuthenticationId());
-            debt.setCreationDate(c.getTime());
-            Date date = simpleDateFormat.parse(datePickerEditText.getText().toString());
+            debt.setCreationDate(simpleDateFormat.parse(simpleDateFormat.format(c.getTime())));
             debt.setDueDate(simpleDateFormat.parse(datePickerEditText.getText().toString()));
             debt.setAmount(Integer.parseInt(amountEditText.getText().toString()));
 
-
             debtCreator.createDebt(debt);
+            super.finish();
         }
         catch(Exception ex) {
             ex.printStackTrace();
-        }
-        finally {
             super.finish();
         }
     }

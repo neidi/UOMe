@@ -30,7 +30,6 @@ public class DeletePersonTask extends AsyncTask<Integer, Void, String> {
 
             String dblink = "http://10.177.1.183/mobprophp/deleteperson.php";
 
-            URL url = new URL(dblink);
             HttpClient client = new DefaultHttpClient();
             HttpPost httpPost = new HttpPost(dblink);
             httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairArrayList));
