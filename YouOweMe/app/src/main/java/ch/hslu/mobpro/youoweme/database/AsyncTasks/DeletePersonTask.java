@@ -28,7 +28,7 @@ public class DeletePersonTask extends AsyncTask<Integer, Void, String> {
 
             nameValuePairArrayList.add(new BasicNameValuePair("id", params[0].toString()));
 
-            String dblink = "http://10.177.1.183/mobprophp/deleteperson.php";
+            String dblink = "http://10.177.1.183/deleteperson.php";
 
             HttpClient client = new DefaultHttpClient();
             HttpPost httpPost = new HttpPost(dblink);

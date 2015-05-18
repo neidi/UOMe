@@ -37,7 +37,7 @@ public class CreateDebtTask extends AsyncTask<String, Void, String> {
             nameValuePairArrayList.add(new BasicNameValuePair("reason", params[5]));
 
             //Php file und DB connection link
-            String dblink = "http://10.177.1.183/mobprophp/createdebt.php";
+            String dblink = "http://10.177.1.183/createdebt.php";
 
 
             HttpClient client = new DefaultHttpClient();

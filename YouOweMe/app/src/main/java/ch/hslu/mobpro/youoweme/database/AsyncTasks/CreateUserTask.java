@@ -38,7 +38,7 @@ public class CreateUserTask extends AsyncTask<String, Void, String> {
             nameValuePairArrayList.add(new BasicNameValuePair("password", params[3]));
 
 
-            String dblink = "http://10.177.1.183/mobprophp/createperson.php";
+            String dblink = "http://10.177.1.183/createperson.php";
 
             HttpClient client = new DefaultHttpClient();
             HttpPost httpPost = new HttpPost(dblink);

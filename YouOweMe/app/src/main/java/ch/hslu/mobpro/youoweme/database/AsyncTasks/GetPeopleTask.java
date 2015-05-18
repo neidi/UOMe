@@ -25,7 +25,7 @@ public class GetPeopleTask extends AsyncTask<String, Void, ArrayList<Person>> {
     protected ArrayList<Person> doInBackground(String... params) {
         ArrayList<Person> arrayList = new ArrayList();
         try {
-            String dblink = "http://10.177.1.183/mobprophp/getpeople.php";
+            String dblink = "http://10.177.1.183/getpeople.php";
 
             HttpClient httpclient = new DefaultHttpClient();
             HttpPost httppost = new HttpPost(dblink);
